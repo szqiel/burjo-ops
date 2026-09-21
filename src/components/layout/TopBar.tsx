@@ -2,12 +2,15 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useEvaluation } from "@/context/EvaluationContext";
-import { Clock, ShieldCheck, Timer } from "lucide-react";
+import { Timer, X, Menu } from "lucide-react";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function TopBar() {
   const { openDrawer, activeTaskId, currentDuration } = useEvaluation();
   const [timeString, setTimeString] = useState<string>("");
   const [shiftName, setShiftName] = useState<string>("SHIFT MALAM");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tapCountRef = useRef(0);
   const lastTapTimeRef = useRef(0);
 
@@ -49,45 +52,75 @@ export function TopBar() {
   };
 
   return (
-    <header className="sticky top-0 z-30 w-full bg-burjo-canvas/95 backdrop-blur-md border-b border-burjo-border px-5 py-3.5 transition-all">
+    <header className="sticky top-0 z-30 w-full bg-burjo-canvas px-5 pt-5 sm:px-7">
       <div className="flex items-center justify-between">
-        {/* Logo with 3-Tap Usability Hook */}
         <div
           onClick={handleLogoTap}
           className="cursor-pointer select-none group flex items-center gap-2"
           title="Ketuk 3x untuk Drawer Evaluasi Usabilitas"
         >
-          <div className="w-2 h-2 rounded-full bg-burjo-blue animate-pulse" />
-          <span className="text-sm font-bold tracking-tight text-burjo-text group-hover:text-burjo-blue transition-colors">
-            BURJO SS
+          <span className="text-[15px] font-bold tracking-[-0.08em] text-burjo-text leading-none">
+            BURJO
           </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-muted">
+          <span className="text-[15px] font-bold tracking-[-0.08em] text-burjo-blue leading-none">
             OPS
           </span>
         </div>
 
-        {/* Live Operational Shift Badge & Active Stopwatch */}
         <div className="flex items-center gap-2">
           {activeTaskId ? (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-burjo-yellow/10 border border-burjo-yellow/30 text-burjo-yellow">
-              <Timer className="w-3 h-3 animate-spin" />
-              <span className="text-[11px] font-mono font-bold tracking-wider">
+            <div className="flex items-center gap-1.5 px-2 py-1 text-burjo-yellow">
+              <Timer className="w-3.5 h-3.5" />
+              <span className="text-[11px] font-mono font-bold">
                 {currentDuration.toFixed(1)}s
               </span>
             </div>
           ) : (
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-zinc-900 border border-burjo-border text-[10px] font-mono text-zinc-400">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-burjo-green" />
-                <span>{shiftName}</span>
-              </div>
-              <span className="text-[11px] font-mono text-burjo-muted hidden xs:inline">
-                {timeString}
-              </span>
-            </div>
+            <span className="text-[10px] font-mono tracking-wide text-burjo-quiet hidden sm:inline">{shiftName}</span>
           )}
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen(true)}
+            className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-burjo-text transition-transform duration-200 ease-editorial active:scale-95"
+            aria-label="Buka navigasi"
+          >
+            <Menu className="h-5 w-5" strokeWidth={2.4} />
+          </button>
         </div>
       </div>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="fixed inset-0 z-50 flex min-h-screen w-full max-w-[460px] flex-col bg-burjo-canvas px-5 pb-10 pt-5 sm:px-7"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[15px] font-bold tracking-[-0.08em] text-burjo-text">BURJO<span className="text-burjo-blue">OPS</span></span>
+              <button type="button" onClick={() => setIsMenuOpen(false)} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-burjo-text active:scale-95" aria-label="Tutup navigasi">
+                <X className="h-5 w-5" strokeWidth={2.4} />
+              </button>
+            </div>
+            <nav className="mt-auto mb-auto flex flex-col gap-3 py-16">
+              {[
+                ["Beranda", "/"],
+                ["Resep", "/resep"],
+                ["Micro-SOP", "/sop"],
+                ["Serah terima", "/checklist"],
+              ].map(([label, href], index) => (
+                <motion.div key={href} initial={{ opacity: 0, transform: "translateY(12px)" }} animate={{ opacity: 1, transform: "translateY(0)" }} transition={{ delay: 0.05 + index * 0.05, duration: 0.3, ease: "easeOut" }}>
+                  <Link href={href} onClick={() => setIsMenuOpen(false)} className="block text-[clamp(2.5rem,12vw,4rem)] font-normal tracking-[-0.07em] text-burjo-text transition-colors hover:text-burjo-blue">
+                    {label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+            <div className="border-t border-burjo-border pt-5 text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet">{timeString || shiftName}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 export function PageTransition({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 8 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -8 }}
-      transition={{ duration: 0.16, ease: "easeOut" }}
+      initial={{ opacity: 0, transform: "translateY(10px)" }}
+      animate={{ opacity: 1, transform: "translateY(0)" }}
+      exit={{ opacity: 0, transform: "translateY(-6px)" }}
+      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       className="w-full flex-1 flex flex-col"
     >
       {children}
