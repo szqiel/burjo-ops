@@ -10,7 +10,7 @@ import { CookingParametersGrid } from "@/components/recipe/CookingParametersGrid
 import recipesData from "@/data/recipes.json";
 import { Recipe } from "@/types/recipe";
 import { useEvaluation } from "@/context/EvaluationContext";
-import { ArrowLeft, ChefHat, CheckCircle2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function RecipeDetailPage() {
   const params = useParams();
@@ -47,12 +47,12 @@ export default function RecipeDetailPage() {
 
   return (
     <PageTransition>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col">
         {/* Top Navigation Row: Back Link & Portion Segmented Control */}
-        <div className="flex items-center justify-between pt-1">
+        <div className="flex items-center justify-between pt-7">
           <Link
             href="/resep"
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-white transition-colors py-1 focus:outline-none"
+            className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted hover:text-burjo-text transition-colors py-1"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Katalog</span>
@@ -63,35 +63,35 @@ export default function RecipeDetailPage() {
         </div>
 
         {/* Recipe Title & Kicker */}
-        <div>
-          <div className="flex items-center gap-1.5 mb-1">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-blue font-semibold">
+        <div className="mt-20">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-blue font-semibold">
               {recipe.category}
             </span>
-            <span className="text-zinc-600">•</span>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500">
+            <span className="text-burjo-quiet">•</span>
+            <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet">
               Porsi: {portion} Orang
             </span>
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white uppercase">
+          <h1 className="mt-4 text-[clamp(3rem,13vw,4.8rem)] font-normal leading-[0.86] tracking-[-0.085em] text-burjo-text">
             {recipe.title}
           </h1>
-          <p className="text-xs text-burjo-muted font-mono mt-0.5">
-            Racikan Baku Dapur Burjo SS
+          <p className="mt-5 text-[15px] leading-[1.25] tracking-[-0.03em] text-burjo-muted">
+            {recipe.description}
           </p>
         </div>
 
         {/* Hero Takaran Card (Glanceable at 50 cm) */}
-        <HeroTakaranCard
+        <div className="mt-16"><HeroTakaranCard
           name={primaryIngredient.name}
           amount={multipliedPrimaryAmount}
           unit={primaryIngredient.unit}
-        />
+        /></div>
 
         {/* 2x2 Sub-Parameters Grid */}
-        <div>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block mb-1">
-            KOMPONEN BUMBU & TEKNIK
+        <div className="mt-20">
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet block mb-5">
+            Komponen & teknik
           </span>
           <CookingParametersGrid
             ingredients={recipe.ingredients}
@@ -102,12 +102,11 @@ export default function RecipeDetailPage() {
         </div>
 
         {/* SOP Plating & Presentation Card */}
-        <div className="bg-zinc-900/50 border border-burjo-border rounded-xl p-3.5 space-y-1">
-          <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-burjo-yellow font-semibold">
-            <ChefHat className="w-3.5 h-3.5" />
-            <span>SOP Penyajian & Plating</span>
+        <div className="mt-16 border-t border-burjo-border py-6">
+          <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-yellow font-semibold">
+            Penyajian
           </div>
-          <p className="text-xs text-zinc-300 leading-relaxed font-sans">
+          <p className="mt-3 text-[15px] leading-[1.35] tracking-[-0.02em] text-burjo-muted">
             {recipe.platingNotes}
           </p>
         </div>

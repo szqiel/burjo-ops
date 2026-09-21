@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles } from "lucide-react";
 
 interface HeroTakaranCardProps {
   name: string;
@@ -12,20 +11,15 @@ interface HeroTakaranCardProps {
 
 export function HeroTakaranCard({ name, amount, unit }: HeroTakaranCardProps) {
   return (
-    <div className="w-full bg-burjo-surface border-y border-r border-burjo-border border-l-[4px] border-l-burjo-blue rounded-2xl p-5 shadow-lg relative overflow-hidden">
-      {/* Top Label */}
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-mono font-bold uppercase tracking-wider text-burjo-blue flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5" />
-          {name}
-        </span>
-        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded border border-burjo-border">
-          TAKARAN BAKU
-        </span>
+    <div className="relative overflow-hidden rounded-[24px] bg-burjo-surface px-6 py-7">
+      <span className="absolute right-[-18px] top-[-18px] h-20 w-20 rounded-full bg-burjo-blue" aria-hidden="true" />
+      <div className="relative flex items-center justify-between">
+        <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-muted">Takaran utama</span>
+        <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-yellow">Baku</span>
       </div>
 
       {/* Large 50cm Glanceable Metric */}
-      <div className="py-2">
+      <div className="relative py-16">
         <AnimatePresence mode="wait">
           <motion.div
             key={amount}
@@ -33,26 +27,26 @@ export function HeroTakaranCard({ name, amount, unit }: HeroTakaranCardProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.15 }}
-            className="flex items-baseline gap-3"
+            className="flex items-end gap-3"
           >
-            <span className="text-6xl font-black tracking-tight text-white font-mono leading-none">
+            <span className="text-[clamp(5rem,26vw,8rem)] font-normal tracking-[-0.1em] text-burjo-text leading-none">
               {amount}
             </span>
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold tracking-widest uppercase text-zinc-300">
+              <span className="text-sm font-mono font-bold tracking-[0.1em] uppercase text-burjo-text">
                 {unit.toUpperCase()}
               </span>
-              <span className="text-[10px] font-mono text-zinc-500 uppercase">
-                SENDOK MAKAN
+              <span className="mt-1 text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted">
+                {name}
               </span>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="mt-2 pt-2.5 border-t border-burjo-border/60 flex items-center justify-between text-[10px] font-mono text-zinc-500">
-        <span>JARAK BACA JURU MASAK 50 CM</span>
-        <span className="text-burjo-blue font-semibold">STANDAR SS</span>
+      <div className="relative flex items-center justify-between border-t border-burjo-border pt-3 text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted">
+        <span>Terlihat dari 50 cm</span>
+        <span className="text-burjo-text">SS</span>
       </div>
     </div>
   );

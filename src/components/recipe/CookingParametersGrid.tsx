@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Flame, Clock, Droplets, FlameKindling } from "lucide-react";
+import { Flame, Clock, Droplets } from "lucide-react";
 import { Ingredient } from "@/types/recipe";
 
 interface CookingParametersGridProps {
@@ -20,24 +20,23 @@ export function CookingParametersGrid({
   const secondaryIngredients = ingredients.filter((item) => !item.primary);
 
   return (
-    <div className="grid grid-cols-2 gap-3 my-2">
+    <div className="border-t border-burjo-border">
       {/* Secondary Ingredients (e.g. Kecap, Cabai) */}
       {secondaryIngredients.map((item) => {
         const multipliedAmount = item.amount * portionMultiplier;
         return (
           <div
             key={item.name}
-            className="bg-zinc-900/70 border border-burjo-border rounded-xl p-3.5 flex flex-col justify-between"
+            className="grid grid-cols-[1fr_auto] items-end gap-4 border-b border-burjo-border py-5"
           >
-            <span className="text-[10px] font-mono uppercase tracking-wider text-burjo-muted font-semibold flex items-center gap-1">
-              <Droplets className="w-3 h-3 text-burjo-blue" />
+            <span className="text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted font-semibold flex items-center gap-1">
               {item.name}
             </span>
-            <div className="mt-1.5">
-              <p className="text-sm font-bold text-white tracking-tight">
+            <div className="text-right">
+              <p className="text-lg tracking-[-0.04em] text-burjo-text">
                 {multipliedAmount} {item.unit}
               </p>
-              <span className="text-[9px] font-mono text-zinc-500">
+              <span className="text-[9px] font-mono text-burjo-quiet">
                 {item.name.toLowerCase().includes("kecap") ? "±15ml per putaran" : "Ulek kasar"}
               </span>
             </div>
@@ -46,29 +45,27 @@ export function CookingParametersGrid({
       })}
 
       {/* Heat Level Parameter */}
-      <div className="bg-zinc-900/70 border border-burjo-border rounded-xl p-3.5 flex flex-col justify-between">
-        <span className="text-[10px] font-mono uppercase tracking-wider text-burjo-muted font-semibold flex items-center gap-1">
-          <Flame className="w-3 h-3 text-burjo-yellow" />
+      <div className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-burjo-border py-5">
+        <span className="text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted font-semibold flex items-center gap-1">
           Tingkat Api
         </span>
-        <div className="mt-1.5">
-          <span className="inline-block px-2 py-0.5 rounded bg-burjo-yellow/10 border border-burjo-yellow/30 text-burjo-yellow text-xs font-mono font-bold uppercase">
+        <div>
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.1em] text-burjo-yellow">
             {heatLevel}
           </span>
         </div>
       </div>
 
       {/* Cook Time Parameter */}
-      <div className="bg-zinc-900/70 border border-burjo-border rounded-xl p-3.5 flex flex-col justify-between">
-        <span className="text-[10px] font-mono uppercase tracking-wider text-burjo-muted font-semibold flex items-center gap-1">
-          <Clock className="w-3 h-3 text-zinc-400" />
+      <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-5">
+        <span className="text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-muted font-semibold flex items-center gap-1">
           Target Waktu
         </span>
-        <div className="mt-1.5">
-          <p className="text-sm font-bold text-white tracking-tight font-mono">
+        <div className="text-right">
+          <p className="text-lg tracking-[-0.04em] text-burjo-text">
             {cookTime}
           </p>
-          <span className="text-[9px] font-mono text-zinc-500">
+          <span className="text-[9px] font-mono text-burjo-quiet">
             Wajan panas stabil
           </span>
         </div>

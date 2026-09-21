@@ -1,91 +1,44 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { PageTransition } from "@/components/layout/PageTransition";
 import recipesData from "@/data/recipes.json";
 import { Recipe } from "@/types/recipe";
-import { ChevronRight, Flame, Clock, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function RecipeCatalogPage() {
   const recipes = recipesData as Recipe[];
 
   return (
     <PageTransition>
-      <div className="flex flex-col space-y-5">
-        {/* Header */}
-        <div className="pt-2">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-blue font-semibold">
-            STANDARISASI MENU
-          </span>
-          <h1 className="text-2xl font-bold tracking-tight text-white mt-0.5">
-            Katalog Resep Baku
-          </h1>
-          <p className="text-xs text-burjo-muted mt-1 leading-relaxed">
-            Daftar resep racik dapur Burjo SS untuk menjaga konsistensi rasa antar juru masak.
-          </p>
-        </div>
+      <section className="pt-7">
+        <p className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-blue">Resep baku</p>
+        <h1 className="mt-14 max-w-[8ch] text-balance text-[clamp(3.4rem,14vw,5.4rem)] font-normal leading-[0.86] tracking-[-0.085em] text-burjo-text">Masak dengan pasti.</h1>
+        <p className="mt-7 max-w-[29ch] text-[15px] leading-[1.25] tracking-[-0.03em] text-burjo-muted">Pilih menu, atur porsi, lalu lihat takaran tanpa perlu menebak.</p>
 
-        {/* Recipe Cards List */}
-        <div className="flex flex-col space-y-3">
-          {recipes.map((recipe) => {
-            const primaryIngredient = recipe.ingredients.find((i) => i.primary);
-
+        <div className="mt-24 border-t border-burjo-border">
+          {recipes.map((recipe, index) => {
+            const primary = recipe.ingredients.find((ingredient) => ingredient.primary);
             return (
-              <Link
-                key={recipe.id}
-                href={`/resep/${recipe.id}`}
-                className="group focus:outline-none"
-              >
-                <motion.div
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full bg-burjo-surface border border-burjo-border group-hover:border-burjo-blue/50 rounded-2xl p-4 transition-all duration-200 shadow-sm flex flex-col justify-between"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 bg-zinc-900 px-2 py-0.5 rounded border border-burjo-border">
-                      {recipe.category}
-                    </span>
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
-                      <span className="flex items-center gap-1 text-burjo-yellow">
-                        <Flame className="w-3 h-3" />
-                        {recipe.heatLevel}
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-zinc-500" />
-                        {recipe.cookTime}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-end justify-between mt-2">
+              <motion.div key={recipe.id} initial={{ opacity: 0, transform: "translateY(12px)" }} animate={{ opacity: 1, transform: "translateY(0)" }} transition={{ duration: 0.32, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}>
+                <Link href={`/resep/${recipe.id}`} className="group block border-b border-burjo-border py-7 active:scale-[0.98]">
+                  <div className="flex items-start justify-between gap-6">
                     <div>
-                      <h2 className="text-lg font-bold text-white tracking-tight group-hover:text-burjo-blue transition-colors">
-                        {recipe.title}
-                      </h2>
-                      <p className="text-xs text-burjo-muted line-clamp-1 mt-0.5">
-                        {recipe.description}
-                      </p>
+                      <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet">{String(index + 1).padStart(2, "0")} · {recipe.category}</span>
+                      <h2 className="mt-3 text-[clamp(2rem,9vw,2.8rem)] leading-[0.88] tracking-[-0.07em] text-burjo-text transition-colors duration-200 ease-editorial group-hover:text-burjo-blue">{recipe.title}</h2>
+                      <p className="mt-3 max-w-[24ch] text-xs leading-[1.35] text-burjo-muted">{recipe.description}</p>
                     </div>
-
-                    {primaryIngredient && (
-                      <div className="text-right pl-3">
-                        <span className="text-xl font-black font-mono text-white leading-none">
-                          {primaryIngredient.amount}
-                        </span>
-                        <span className="text-[9px] font-mono uppercase text-burjo-blue block font-semibold">
-                          {primaryIngredient.unit} BUMBU
-                        </span>
-                      </div>
-                    )}
+                    <div className={`mt-1 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border ${index % 2 === 0 ? "border-burjo-blue text-burjo-blue" : "border-burjo-yellow text-burjo-yellow"}`}>
+                      <span className="text-lg leading-none">↗</span>
+                    </div>
                   </div>
-                </motion.div>
-              </Link>
+                  {primary && <p className="mt-8 text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-quiet"><span className="text-burjo-text">{primary.amount} {primary.unit}</span> {primary.name}</p>}
+                </Link>
+              </motion.div>
             );
           })}
         </div>
-      </div>
+      </section>
     </PageTransition>
   );
 }
