@@ -10,19 +10,26 @@ const config: Config = {
     extend: {
       colors: {
         burjo: {
-          canvas: "#09090B",
-          surface: "#141417",
-          border: "#27272A",
+          canvas: "#202120",
+          surface: "#282927",
+          surfaceSoft: "#242522",
+          ink: "#F5F5F0",
+          muted: "#A5A69F",
+          quiet: "#777873",
+          border: "#3A3B37",
           blue: "#35C3F6",
           yellow: "#FFE837",
           green: "#16A34A",
-          text: "#FAFAFA",
-          muted: "#71717A",
+          text: "#F5F5F0",
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        sans: ["Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
+        display: ["Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
+      },
+      transitionTimingFunction: {
+        editorial: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },
