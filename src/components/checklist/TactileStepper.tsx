@@ -30,24 +30,24 @@ export function TactileStepper({
   };
 
   return (
-    <div className="w-full bg-burjo-surface border border-burjo-border rounded-2xl p-3.5 flex flex-col justify-between">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-muted font-semibold">
+    <div className="w-full border-b border-burjo-border py-5">
+      <div className="flex items-center justify-between mb-5">
+        <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-burjo-muted font-semibold">
           {label}
         </span>
-        <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 bg-zinc-900 px-2 py-0.5 rounded border border-burjo-border">
-          SATUAN: {unit}
+        <span className="text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-quiet">
+          {unit}
         </span>
       </div>
 
-      <div className="flex items-center justify-between bg-zinc-900/60 border border-burjo-border/60 rounded-xl p-1.5">
+      <div className="flex items-center justify-between">
         {/* Minus Button - Exactly 48x48px touch target */}
         <motion.button
           type="button"
           whileTap={{ scale: 0.9 }}
           onClick={handleDecrement}
           disabled={value <= min}
-          className="w-12 h-12 rounded-lg bg-zinc-800/90 border border-burjo-border flex items-center justify-center text-white disabled:opacity-30 disabled:pointer-events-none hover:bg-zinc-700 transition-colors focus:outline-none"
+          className="w-12 h-12 rounded-full border border-burjo-border flex items-center justify-center text-burjo-text disabled:opacity-30 disabled:pointer-events-none hover:border-burjo-muted transition-colors"
           aria-label={`Kurangi ${label}`}
         >
           <Minus className="w-5 h-5" />
@@ -55,10 +55,10 @@ export function TactileStepper({
 
         {/* Counter Display Centered */}
         <div className="flex flex-col items-center justify-center px-4">
-          <span className="text-2xl font-black font-mono tracking-tight text-white leading-none">
+          <span className="text-4xl font-normal tracking-[-0.08em] text-burjo-text leading-none">
             {value}
           </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-blue mt-1 font-semibold">
+          <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-burjo-blue mt-2 font-semibold">
             {unit}
           </span>
         </div>
@@ -69,7 +69,7 @@ export function TactileStepper({
           whileTap={{ scale: 0.9 }}
           onClick={handleIncrement}
           disabled={value >= max}
-          className="w-12 h-12 rounded-lg bg-zinc-800/90 border border-burjo-border flex items-center justify-center text-white disabled:opacity-30 disabled:pointer-events-none hover:bg-zinc-700 transition-colors focus:outline-none"
+          className="w-12 h-12 rounded-full border border-burjo-border flex items-center justify-center text-burjo-text disabled:opacity-30 disabled:pointer-events-none hover:border-burjo-muted transition-colors"
           aria-label={`Tambah ${label}`}
         >
           <Plus className="w-5 h-5" />

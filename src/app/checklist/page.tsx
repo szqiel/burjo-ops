@@ -58,34 +58,24 @@ export default function ShiftChecklistPage() {
 
   return (
     <PageTransition>
-      <div className="flex flex-col space-y-5 pb-6">
+      <div className="flex flex-col pb-6">
         {/* Header */}
-        <div className="pt-2">
-          <div className="flex items-center gap-1.5 mb-1">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-green font-semibold">
-              INBOUND LOGISTICS & SAFETY
-            </span>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            Serah Terima Shift
-          </h1>
-          <p className="text-xs text-burjo-muted mt-1 leading-relaxed">
-            Validasi stok kritis 24 jam & keamanan gas sebelum jam sibuk malam (18.00–23.00 WIB).
-          </p>
+        <div className="pt-7">
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-yellow font-semibold">Serah terima</span>
+          <h1 className="mt-14 max-w-[8ch] text-[clamp(3.4rem,14vw,5.4rem)] font-normal leading-[0.86] tracking-[-0.085em] text-burjo-text">Akhiri shift dengan jelas.</h1>
+          <p className="mt-7 max-w-[28ch] text-[15px] leading-[1.25] tracking-[-0.03em] text-burjo-muted">Periksa keamanan dan stok, lalu kirim catatan untuk kru berikutnya.</p>
         </div>
 
         {/* Form Container */}
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} className="mt-20 flex flex-col gap-8">
           {/* 1. Safety Toggle: Regulator LPG 3kg */}
           <SafetyToggle isSafe={isLpgSafe} onChange={setIsLpgSafe} />
 
           {/* 2. Critical Stock Steppers */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between px-0.5">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold">
-                SISA STOK BAHAN CEPAT BERPUTAR
-              </span>
-              <span className="text-[10px] font-mono text-zinc-600">SUPPLIER 06.00 WIB</span>
+          <div>
+            <div className="mb-5 flex items-center justify-between border-b border-burjo-border pb-3">
+              <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet">Stok kritis</span>
+              <span className="text-[10px] font-mono text-burjo-muted">06.00 WIB</span>
             </div>
 
             {/* Sisa Telur Ayam (Tray) */}
@@ -123,7 +113,7 @@ export default function ShiftChecklistPage() {
           <div className="space-y-1.5">
             <label
               htmlFor="handover-notes"
-              className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 font-semibold block"
+              className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-quiet font-semibold block"
             >
               CATATAN KHUSUS (OPSIONAL)
             </label>
@@ -133,7 +123,7 @@ export default function ShiftChecklistPage() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Pesan kondisi kompor atau bahan untuk shift malam..."
-              className="w-full bg-burjo-surface border border-burjo-border rounded-xl p-3 text-xs text-white placeholder:text-zinc-600 focus:border-burjo-blue focus:outline-none transition-colors resize-none font-sans"
+              className="mt-3 w-full border-b border-burjo-border bg-transparent px-0 py-3 text-sm text-burjo-text placeholder:text-burjo-quiet focus:border-burjo-blue focus:outline-none transition-colors resize-none font-sans"
             />
           </div>
 
@@ -142,7 +132,7 @@ export default function ShiftChecklistPage() {
             type="submit"
             disabled={isSubmitting}
             whileTap={{ scale: 0.97 }}
-            className="w-full min-h-[52px] rounded-2xl bg-burjo-green hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(22,163,74,0.35)] transition-all duration-200 disabled:opacity-75 focus:outline-none"
+            className="w-full min-h-[56px] rounded-lg bg-burjo-yellow text-burjo-canvas font-bold uppercase tracking-[0.12em] text-[10px] flex items-center justify-center gap-2 transition-transform duration-200 active:scale-[0.98] disabled:opacity-75"
           >
             {isSubmitting ? (
               <>
