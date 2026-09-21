@@ -1,0 +1,44 @@
+[
+  {
+    "id": "mi-dok-dok",
+    "title": "Mi Dok-dok Spesial",
+    "category": "Mi Olahan",
+    "cookTime": "3-4 Menit",
+    "heatLevel": "Api Sedang",
+    "ingredients": [
+      { "name": "Bumbu Racik Burjo SS", "amount": 1.5, "unit": "sdm", "primary": true },
+      { "name": "Kecap Manis", "amount": 1, "unit": "putaran botol", "primary": false },
+      { "name": "Cabai Rawit", "amount": 4, "unit": "butir (ulek)", "primary": false }
+    ],
+    "platingNotes": "Taburkan bawang goreng dan kerupuk renyah di atas kuah kental.",
+    "description": "Menu signature kuah kental gurih pedas khas Burjo SS."
+  },
+  {
+    "id": "magelangan",
+    "title": "Magelangan SS",
+    "category": "Nasi & Mi",
+    "cookTime": "4 Menit",
+    "heatLevel": "Api Besar",
+    "ingredients": [
+      { "name": "Bumbu Racik Burjo SS", "amount": 2, "unit": "sdm", "primary": true },
+      { "name": "Kecap Manis", "amount": 1.5, "unit": "putaran botol", "primary": false },
+      { "name": "Nasi Putih", "amount": 1, "unit": "piring peres", "primary": false }
+    ],
+    "platingNotes": "Aduk cepat hingga nasi berbutir dan tidak menggumpal.",
+    "description": "Kombinasi nasi goreng dan mi instan dengan aroma wajan khas (wok hei)."
+  },
+  {
+    "id": "nasi-ayam-bali",
+    "title": "Nasi Ayam Bali",
+    "category": "Olahan Ayam",
+    "cookTime": "3 Menit",
+    "heatLevel": "Api Sedang",
+    "ingredients": [
+      { "name": "Bumbu Racik Bali SS", "amount": 1.5, "unit": "sdm", "primary": true },
+      { "name": "Kecap Manis", "amount": 0.5, "unit": "putaran botol", "primary": false },
+      { "name": "Daging Ayam", "amount": 1, "unit": "potong goreng", "primary": false }
+    ],
+    "platingNotes": "Siram kuah bumbu merah di atas nasi hangat dan suwiran ayam.",
+    "description": "Ayam suwir bumbu pedas manis gurih beraroma rempah pekat."
+  }
+]

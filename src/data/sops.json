@@ -1,0 +1,28 @@
+[
+  {
+    "id": "sanitasi-wajan",
+    "title": "Sanitasi Wajan Cepat",
+    "category": "Sanitasi",
+    "duration": "00:42",
+    "videoUrl": "/videos/sanitasi-wajan.mp4",
+    "keyTakeaway": "Siram air saat wajan masih panas untuk meluruhkan kerak bumbu tanpa menggores logam.",
+    "steps": [
+      "Siram wajan dengan air bersih saat kondisi masih panas membara",
+      "Gunakan spons sabut halus (hindari kawat tajam penggores)",
+      "Bilas cepat dan tiriskan di rak stasiun pencucian"
+    ]
+  },
+  {
+    "id": "potong-sawi",
+    "title": "Potong Sawi & Kol Zero-Waste",
+    "category": "Zero-Waste",
+    "duration": "00:35",
+    "videoUrl": "/videos/potong-sawi.mp4",
+    "keyTakeaway": "Gunakan pangkal batang untuk tekstur kuah dok-dok agar tidak ada bagian sayur yang terbuang.",
+    "steps": [
+      "Potong pangkal batang tipis-tipis (0.5 cm) untuk kuah gurih",
+      "Iris helai daun lebar 2 cm untuk sayuran akhir",
+      "Simpan sisa sayur bersih di wadah tertutup rapat"
+    ]
+  }
+]
