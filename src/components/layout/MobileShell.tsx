@@ -4,6 +4,8 @@ import React from "react";
 import { TopBar } from "./TopBar";
 import { BottomDock } from "./BottomDock";
 import { EvaluationProvider } from "@/context/EvaluationContext";
+import { EvaluationDrawer } from "@/components/evaluation/EvaluationDrawer";
+import { TaskCheckpointModal } from "@/components/evaluation/TaskCheckpointModal";
 
 export function MobileShell({ children }: { children: React.ReactNode }) {
   return (
@@ -22,6 +24,10 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
 
           {/* Floating Bottom Navigation Pill */}
           <BottomDock />
+
+          {/* Evaluation Usability Drawer & Checkpoint Modal */}
+          <EvaluationDrawer />
+          <TaskCheckpointModal />
         </div>
       </div>
     </EvaluationProvider>
