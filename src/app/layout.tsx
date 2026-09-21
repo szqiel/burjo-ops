@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { MobileShell } from "@/components/layout/MobileShell";
 
 export const metadata: Metadata = {
-  title: "BurjoOps - KMS Mobile Web App",
-  description: "Knowledge Management System Mobile Web App untuk UMKM Burjo SS",
+  title: "BurjoOps - Knowledge Management System",
+  description: "KMS Mobile Web App untuk UMKM Burjo SS (Tembalang, Semarang)",
 };
 
 export const viewport: Viewport = {
@@ -21,8 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="dark">
-      <body className="bg-burjo-canvas text-burjo-text antialiased min-h-screen">
-        {children}
+      <body className="bg-[#050507] text-burjo-text antialiased min-h-screen">
+        <MobileShell>{children}</MobileShell>
       </body>
     </html>
   );
