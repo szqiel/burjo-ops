@@ -15,22 +15,22 @@ export function SopVideoCard({ sop, onOpen }: SopVideoCardProps) {
     <motion.div
       whileTap={{ scale: 0.98 }}
       onClick={() => onOpen(sop)}
-      className="cursor-pointer group relative w-full aspect-[9/16] max-h-[460px] bg-burjo-surface border border-burjo-border rounded-2xl overflow-hidden flex flex-col justify-between p-4 shadow-xl transition-all duration-300 hover:border-burjo-blue/60"
+      className="cursor-pointer group relative w-full aspect-[4/5] bg-burjo-surface rounded-[24px] overflow-hidden flex flex-col justify-between p-5 transition-transform duration-200 active:scale-[0.98]"
     >
       {/* Background Stylized Graphic / Dark Gradient Simulation */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-zinc-950/80 to-zinc-900/60 z-0" />
+      <div className="absolute inset-0 bg-[#292b28] z-0" />
 
       {/* Decorative Wok / Sawi Minimalist Ambient Backdrop */}
       <div className="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
-        <div className="w-48 h-48 rounded-full border-2 border-dashed border-burjo-blue/40 animate-pulse" />
+        <div className="w-48 h-48 rounded-full border-[18px] border-burjo-blue/50" />
       </div>
 
       {/* Top Bar: Category Pill & Duration Badge */}
       <div className="relative z-10 flex items-center justify-between">
-        <span className="px-2.5 py-1 rounded-full bg-zinc-900/90 border border-burjo-border text-[10px] font-mono uppercase tracking-widest text-burjo-blue font-semibold">
+        <span className="text-[10px] font-mono uppercase tracking-[0.14em] text-burjo-blue font-semibold">
           {sop.category}
         </span>
-        <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-300 flex items-center gap-1">
+        <span className="text-[10px] font-mono text-burjo-muted flex items-center gap-1">
           <Clock className="w-3 h-3 text-zinc-400" />
           {sop.duration}
         </span>
@@ -40,23 +40,22 @@ export function SopVideoCard({ sop, onOpen }: SopVideoCardProps) {
       <div className="relative z-10 self-center my-auto">
         <motion.div
           whileHover={{ scale: 1.1 }}
-          className="w-16 h-16 rounded-full bg-zinc-900/80 backdrop-blur-md border border-burjo-blue/40 flex items-center justify-center shadow-[0_0_24px_rgba(53,195,246,0.3)] group-hover:border-burjo-blue group-hover:shadow-[0_0_32px_rgba(53,195,246,0.5)] transition-all"
+          className="w-16 h-16 rounded-full bg-burjo-blue text-burjo-canvas flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
         >
-          <Play className="w-6 h-6 text-burjo-blue fill-burjo-blue ml-1" />
+          <Play className="w-6 h-6 fill-current ml-1" />
         </motion.div>
       </div>
 
       {/* Bottom Info: Title & Key Takeaway */}
       <div className="relative z-10 space-y-1">
-        <h3 className="text-base font-bold text-white tracking-tight group-hover:text-burjo-blue transition-colors">
+        <h3 className="text-[clamp(1.8rem,8vw,2.4rem)] font-normal leading-[0.9] tracking-[-0.065em] text-burjo-text">
           {sop.title}
         </h3>
-        <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+        <p className="mt-3 text-xs text-burjo-muted line-clamp-2 leading-[1.35]">
           {sop.keyTakeaway}
         </p>
-        <div className="pt-2 flex items-center gap-1 text-[10px] font-mono text-burjo-blue">
-          <span>KETUK UNTUK PUTAR VIDEO</span>
-          <span className="animate-pulse">→</span>
+        <div className="pt-5 flex items-center gap-1 text-[10px] font-mono uppercase tracking-[0.13em] text-burjo-blue">
+          <span>Putar</span><span>↗</span>
         </div>
       </div>
     </motion.div>

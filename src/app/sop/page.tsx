@@ -24,31 +24,23 @@ export default function MicroSopPage() {
 
   return (
     <PageTransition>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col">
         {/* Header */}
-        <div className="pt-2">
-          <div className="flex items-center gap-1.5 mb-1">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-burjo-yellow font-semibold">
-              ONBOARDING KRU BARU
-            </span>
-          </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            Micro-SOP Dapur
-          </h1>
-          <p className="text-xs text-burjo-muted mt-1 leading-relaxed">
-            Edukasi praktis 30-60 detik untuk teknik sanitasi dan efisiensi bahan baku zero-waste.
-          </p>
+        <div className="pt-7">
+          <span className="text-[10px] font-mono uppercase tracking-[0.16em] text-burjo-yellow font-semibold">Micro-SOP</span>
+          <h1 className="mt-14 max-w-[8ch] text-[clamp(3.4rem,14vw,5.4rem)] font-normal leading-[0.86] tracking-[-0.085em] text-burjo-text">Lihat. Ikuti. Ulangi.</h1>
+          <p className="mt-7 max-w-[28ch] text-[15px] leading-[1.25] tracking-[-0.03em] text-burjo-muted">Teknik dapur yang cukup ditonton sekali untuk langsung dikerjakan.</p>
         </div>
 
         {/* Category Horizontal Filter Pills */}
-        <CategoryPills
+        <div className="mt-16"><CategoryPills
           categories={CATEGORIES}
           selectedCategory={selectedCategory}
           onSelect={setSelectedCategory}
-        />
+        /></div>
 
         {/* Video Cards Vertical Feed */}
-        <div className="flex flex-col space-y-4 pt-1">
+        <div className="mt-12 flex flex-col gap-12">
           {filteredSops.map((sop) => (
             <SopVideoCard key={sop.id} sop={sop} onOpen={setActiveSop} />
           ))}
